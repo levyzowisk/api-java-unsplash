@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("api/collections")
@@ -30,5 +31,11 @@ public class CollectionController {
         collectionService.create(collection);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<UUID> delete (@PathVariable("id") UUID id) {
+        collectionService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

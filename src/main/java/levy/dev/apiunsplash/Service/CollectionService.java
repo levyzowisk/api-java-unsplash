@@ -18,7 +18,7 @@ public class CollectionService {
     }
 
     public List<Collection> getAll() {
-       return collectionRepository.findAll();
+        return collectionRepository.findAll();
     }
 
     public void create(CollectionRequestDto collection) {
@@ -27,6 +27,10 @@ public class CollectionService {
         data.setName(collection.getName());
 
         collectionRepository.save(data);
+    }
+
+    public void delete (UUID id) {
+        collectionRepository.deleteById(id);
     }
 
 }
