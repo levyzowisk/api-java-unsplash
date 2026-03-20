@@ -1,11 +1,11 @@
 package levy.dev.apiunsplash.Controller;
 
+import levy.dev.apiunsplash.Dto.Request.CollectionRequestDto;
 import levy.dev.apiunsplash.Entity.Collection;
 import levy.dev.apiunsplash.Service.CollectionService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +23,12 @@ public class CollectionController {
     public ResponseEntity<List<Collection>> getAll() {
         var collections = collectionService.getAll();
         return ResponseEntity.ok(collections);
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> create(@RequestBody CollectionRequestDto collection) {
+        collectionService.create(collection);
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
