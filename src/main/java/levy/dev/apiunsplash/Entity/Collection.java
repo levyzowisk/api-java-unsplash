@@ -25,9 +25,6 @@ public class Collection {
     @Column(nullable = false)
     private String name;
 
-    @Column(columnDefinition = "TEXT")
-    private String description;
-
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
