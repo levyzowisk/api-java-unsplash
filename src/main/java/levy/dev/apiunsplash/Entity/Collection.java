@@ -45,3 +45,4 @@ public class Collection {
     @OneToMany(mappedBy = "collection", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CollectionImage> images;
 }
+
