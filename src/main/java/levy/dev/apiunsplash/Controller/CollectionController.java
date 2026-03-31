@@ -1,5 +1,6 @@
 package levy.dev.apiunsplash.Controller;
 
+import levy.dev.apiunsplash.Dto.Request.AddImageToCollectionDto;
 import levy.dev.apiunsplash.Dto.Request.CollectionRequestDto;
 import levy.dev.apiunsplash.Dto.Request.UpdateCollectionRequestDto;
 import levy.dev.apiunsplash.Dto.Response.CollectionResponseDto;
@@ -46,5 +47,18 @@ public class CollectionController {
     public ResponseEntity<CollectionResponseDto> update (@PathVariable("id") UUID id, @RequestBody UpdateCollectionRequestDto collection) {
         CollectionResponseDto collectionRes = collectionService.update(id, collection);
         return ResponseEntity.ok(collectionRes);
+    }
+
+
+    @DeleteMapping("/{collectionId}/images/{imageId}")
+    public ResponseEntity<Void> deletePhotoFromCollection (@PathVariable("collectionId") UUID collectionId, @PathVariable("imageId") UUID imageId) {
+        collectionService.deleteCollectionImage(collectionId, imageId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{collectionId}/images")
+    public ResponseEntity<Void> addImageToCollection(@PathVariable("collectionId") UUID collectionID, @RequestBody AddImageToCollectionDto image) {
+        collectionService.addImageToCollection(collectionID, image);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
