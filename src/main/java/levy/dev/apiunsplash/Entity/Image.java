@@ -19,9 +19,6 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "unsplash_id", unique = true, nullable = false)
-    private String unsplashId;
-
     @Column(nullable = false, columnDefinition = "TEXT")
     private String url;
 
