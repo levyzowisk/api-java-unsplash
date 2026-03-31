@@ -15,4 +15,5 @@ public class AddImageToCollectionDto {
 
     private String photographerName;
     private String url;
+    private String idImage;
 }

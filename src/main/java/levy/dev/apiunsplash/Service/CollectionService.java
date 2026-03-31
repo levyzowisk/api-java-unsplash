@@ -75,14 +75,14 @@ public class CollectionService {
         );
     }
 
-    public void deleteCollectionImage(UUID collectionID, UUID imageID) {
-        CollectionImage collectionImage = collectionImageRepository.findByCollectionIdAndImageId(collectionID, imageID)
-                .orElseThrow(() -> new RuntimeException("CollectionImage not found"));
-
-        collectionImageRepository.deleteByCollectionIdAndImageId(collectionID, imageID);
-        imageRepository.deleteById(imageID);
-
-    }
+//    public void deleteCollectionImage(UUID collectionID, String imageID) {
+//        CollectionImage collectionImage = collectionImageRepository.findByCollectionIdAndImageId(collectionID, imageID)
+//                .orElseThrow(() -> new RuntimeException("CollectionImage not found"));
+//
+//        collectionImageRepository.deleteByCollectionIdAndImageId(collectionID, imageID);
+//        imageRepository.deleteById(imageID);
+//
+//    }
 
     public void addImageToCollection(UUID collectionID, AddImageToCollectionDto image)  {
         Collection collection = this.getCollectionById(collectionID);
@@ -90,6 +90,7 @@ public class CollectionService {
         Image imageRequest = new Image();
         imageRequest.setUrl(image.getUrl());
         imageRequest.setPhotographerName(image.getPhotographerName());
+        imageRequest.setIdImage(image.getIdImage());
 
         Image imageData = imageRepository.save(imageRequest);
 
