@@ -6,6 +6,7 @@ import levy.dev.apiunsplash.Dto.Request.UpdateCollectionRequestDto;
 import levy.dev.apiunsplash.Dto.Response.CollectionResponseDto;
 import levy.dev.apiunsplash.Dto.Response.GetAllCollectionResponseDto;
 import levy.dev.apiunsplash.Dto.Response.GetAllCollectionWithContainsPhotoDto;
+import levy.dev.apiunsplash.Dto.Response.GetAllImageCollectionResponseDto;
 import levy.dev.apiunsplash.Entity.Collection;
 import levy.dev.apiunsplash.Service.CollectionService;
 import org.springframework.http.HttpStatus;
@@ -69,5 +70,11 @@ public class CollectionController {
         List<GetAllCollectionWithContainsPhotoDto> collections = collectionService.getAllCollectionWithContainsPhoto(idImage);
         return ResponseEntity.ok(collections);
         
+    }
+
+    @GetMapping("/{collectionId}/images")
+    public ResponseEntity<List<GetAllImageCollectionResponseDto>> getAllImagesCollection(@PathVariable("collectionId") UUID idCollection ) {
+        List<GetAllImageCollectionResponseDto> colllectionImages = collectionService.getAllImageCollection(idCollection);
+        return ResponseEntity.ok(colllectionImages);
     }
 }
