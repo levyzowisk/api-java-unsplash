@@ -1,11 +1,13 @@
 package levy.dev.apiunsplash.Service;
 
+import levy.dev.apiunsplash.Dto.Projection.CollectionStatusProjection;
 import levy.dev.apiunsplash.Dto.Projection.CollectionSummaryProjection;
 import levy.dev.apiunsplash.Dto.Request.AddImageToCollectionDto;
 import levy.dev.apiunsplash.Dto.Request.CollectionRequestDto;
 import levy.dev.apiunsplash.Dto.Request.UpdateCollectionRequestDto;
 import levy.dev.apiunsplash.Dto.Response.CollectionResponseDto;
 import levy.dev.apiunsplash.Dto.Response.GetAllCollectionResponseDto;
+import levy.dev.apiunsplash.Dto.Response.GetAllCollectionWithContainsPhotoDto;
 import levy.dev.apiunsplash.Entity.Collection;
 import levy.dev.apiunsplash.Entity.CollectionImage;
 import levy.dev.apiunsplash.Entity.Image;
@@ -101,5 +103,19 @@ public class CollectionService {
         collectionImageRepository.save(collectionImage);
 
     }
-}
 
+    public List<GetAllCollectionWithContainsPhotoDto> getAllCollectionWithContainsPhoto(String idImage) {
+        List<CollectionStatusProjection> collection = collectionRepository.findAllWithPhotoStatus(idImage);
+
+        return collection.stream().map(c -> {
+            GetAllCollectionWithContainsPhotoDto responseDto = new GetAllCollectionWithContainsPhotoDto();
+
+            responseDto.setId(c.getId());
+            responseDto.setName(c.getName());
+            responseDto.setTotalImages(c.getTotalImages());
+            responseDto.setContainsPhoto(c.getContainsPhoto());
+
+            return responseDto;
+        }).collect(Collectors.toList());
+    }
+}
