@@ -52,11 +52,11 @@ public class CollectionController {
     }
 
 
-//    @DeleteMapping("/{collectionId}/images/{imageId}")
-//    public ResponseEntity<Void> deletePhotoFromCollection (@PathVariable("collectionId") UUID collectionId, @PathVariable("imageId") String imageId) {
-//        collectionService.deleteCollectionImage(collectionId, imageId);
-//        return ResponseEntity.noContent().build();
-//    }
+    @DeleteMapping("/{collectionId}/images/{imageId}")
+    public ResponseEntity<Void> deletePhotoFromCollection (@PathVariable("collectionId") UUID collectionId, @PathVariable("imageId") String imageId) {
+        collectionService.deleteCollectionImage(collectionId, imageId);
+        return ResponseEntity.noContent().build();
+    }
 
     @PostMapping("/{collectionId}/images")
     public ResponseEntity<Void> addImageToCollection(@PathVariable("collectionId") UUID collectionID, @RequestBody AddImageToCollectionDto image) {
