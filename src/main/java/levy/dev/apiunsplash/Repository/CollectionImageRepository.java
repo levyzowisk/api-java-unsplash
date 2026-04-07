@@ -10,8 +10,8 @@ import java.util.UUID;
 public interface CollectionImageRepository extends JpaRepository<CollectionImage, UUID> {
 
     @Transactional()
-    void deleteByCollectionIdAndImageId(UUID collectionID, UUID imageId);
+    void deleteByCollectionIdAndImageId(UUID collectionID, String imageId);
 
-    Optional<CollectionImage> findByCollectionIdAndImageId(UUID collectionID, UUID imageId);
+    Optional<CollectionImage> findByCollectionIdAndImageId(UUID collectionID, String imageId);
 
 }

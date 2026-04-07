@@ -25,6 +25,9 @@ public class Image {
     @Column(name = "photographer_name")
     private String photographerName;
 
+    @Column(name = "id_image")
+    private String idImage;
+
     @OneToMany(mappedBy = "image")
     private Set<CollectionImage> collections;
 }
