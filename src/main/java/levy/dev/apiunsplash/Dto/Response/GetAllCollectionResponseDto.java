@@ -10,4 +10,5 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class GetAllCollectionResponseDto extends CollectionResponseDto{
     private Long totalImages;
+    private String photo;
 }

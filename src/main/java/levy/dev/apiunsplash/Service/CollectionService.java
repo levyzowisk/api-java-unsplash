@@ -44,6 +44,7 @@ public class CollectionService {
             responseDto.setId(collection.getId());
             responseDto.setName(collection.getName());
             responseDto.setTotalImages(collection.getTotalImages());
+            responseDto.setPhoto(collection.getPhoto());
 
             return responseDto;
         }).collect(Collectors.toList());

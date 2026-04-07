@@ -14,9 +14,10 @@ import java.util.UUID;
 @Repository
 public interface CollectionRepository  extends JpaRepository<Collection, UUID> {
 
-    @Query("SELECT c.id as id, c.name as name, COUNT(ci) as totalImages " +
+    @Query("SELECT c.id as id, c.name as name, COUNT(ci) as totalImages, MAX(i.url) as photo " +
             "FROM Collection c " +
             "LEFT JOIN c.images ci " +
+            "LEFT JOIN ci.image i " +
             "GROUP BY c.id, c.name")
     List<CollectionSummaryProjection> findAllWithImageCount();
 
