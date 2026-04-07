@@ -79,14 +79,16 @@ public class CollectionService {
         );
     }
 
-//    public void deleteCollectionImage(UUID collectionID, String imageID) {
-//        CollectionImage collectionImage = collectionImageRepository.findByCollectionIdAndImageId(collectionID, imageID)
-//                .orElseThrow(() -> new RuntimeException("CollectionImage not found"));
-//
-//        collectionImageRepository.deleteByCollectionIdAndImageId(collectionID, imageID);
-//        imageRepository.deleteById(imageID);
-//
-//    }
+    public void deleteCollectionImage(UUID collectionID, String imageID) {
+        List<CollectionImage> collectionImages = collectionImageRepository.findByCollectionIdAndImageIdImage(collectionID, imageID);
+        if (collectionImages.isEmpty()) {
+            throw new RuntimeException("CollectionImage not found");
+        }
+
+        collectionImageRepository.deleteByCollectionIdAndImageIdImage(collectionID, imageID);
+        imageRepository.deleteImage(imageID);
+
+    }
 
     public void addImageToCollection(UUID collectionID, AddImageToCollectionDto image)  {
         Collection collection = this.getCollectionById(collectionID);
