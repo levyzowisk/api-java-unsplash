@@ -6,4 +6,5 @@ public interface CollectionSummaryProjection {
     UUID getId();
     String getName();
     Long getTotalImages();
+    String getPhoto();
 }
